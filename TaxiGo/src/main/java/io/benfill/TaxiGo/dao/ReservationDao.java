@@ -22,17 +22,17 @@ public class ReservationDao {
     private EntityManager entityManager;
 
     public ReservationAnalytics getAnalytics() {
-        // Prix moyen par kilomètre
+
         Double averagePricePerKm = (Double) entityManager.createQuery(
                 "SELECT AVG(r.price / r.distanceKm) FROM Reservation r WHERE r.distanceKm > 0"
         ).getSingleResult();
 
-        // Distance moyenne des courses
+
         Double averageDistance = (Double) entityManager.createQuery(
                 "SELECT AVG(r.distanceKm) FROM Reservation r"
         ).getSingleResult();
 
-        // Distribution des réservations par plage horaire
+
         List<Object[]> reservationsByTimeSlot = entityManager.createQuery(
                 "SELECT FUNCTION('HOUR', r.dateTime) AS hour, COUNT(r) " +
                         "FROM Reservation r " +
@@ -45,7 +45,7 @@ public class ReservationDao {
                         obj -> ((Number) obj[1]).longValue()
                 ));
 
-        // Zones géographiques les plus demandées
+
         List<Object[]> popularZones = entityManager.createQuery(
                         "SELECT CONCAT(r.departureAddress, ', ', r.arrivalAddress) AS zone, COUNT(r) " +
                                 "FROM Reservation r " +
@@ -60,7 +60,7 @@ public class ReservationDao {
                         obj -> ((Number) obj[1]).longValue()
                 ));
 
-        // Rassembler les résultats dans un objet
+
         return ReservationAnalytics.builder()
                 .averagePricePerKm(averagePricePerKm != null ? averagePricePerKm : 0.0)
                 .averageDistance(averageDistance != null ? averageDistance : 0.0)
