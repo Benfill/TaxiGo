@@ -48,7 +48,7 @@ public class Reservation {
 	private String arrivalAddress;
 
 	@Column(name = "price", nullable = false, precision = 10, scale = 2)
-	private BigDecimal price;
+	private double price;
 
 	@Column(name = "start_time_course", nullable = false)
 	private Integer startTimeCourse;

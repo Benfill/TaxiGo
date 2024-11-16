@@ -112,4 +112,10 @@ public class VehicleServiceImpl implements VehicleService {
                 .map(VehicleResponseDto::fromEntity)
                 .orElseThrow(() -> new NoSuchElementException("Vehicle with ID " + id + " not found."));
     }
+
+    @Override
+    public Vehicle findAvailableVehiculeById(Long id) {
+        return vehicleRepository.findByIdAndStatus(id, Status.AVAILABLE)
+                .orElseThrow(() -> new IllegalStateException("Véhicule non disponible ou introuvable pour l'ID : " + id));
+    }
 }

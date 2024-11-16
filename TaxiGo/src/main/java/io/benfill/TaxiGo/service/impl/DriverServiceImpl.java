@@ -146,4 +146,12 @@ public class DriverServiceImpl implements IDriverService {
 	public ResponseEntity<DriverDtoAnalytics> getAnalytics() {
 		return ResponseEntity.status(HttpStatus.OK).body(driverDao.getAnalytics());
 	}
+
+
+	@Override
+	public Driver  findAvailableDriverById(Long id) {
+
+		return driverRepository.findByIdAndStatus(id, Status.AVAILABLE)
+				.orElseThrow(() -> new IllegalStateException("Chauffeur non disponible ou introuvable pour l'ID : " + id));
+	}
 }
