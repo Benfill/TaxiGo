@@ -28,14 +28,12 @@ public class ReservationRequest {
         @NotBlank(message = "Arrival Address est obligatoire")
         private String arrivalAddress;
 
-        @NotBlank(message = "Le prix est obligatoire")
-        private Integer price;
 
-        @NotBlank(message = " heure Debut Course est obligatoire")
-        private Integer heureDebutCourse;
+        @NotBlank(message = "Heure de début de la course est obligatoire")
+        private Integer startTimeCourse;
 
-        @NotBlank(message = " heure Fin Course est obligatoire")
-        private Integer heureFinCourse;
+        @NotBlank(message = "Heure de fin de la course est obligatoire")
+        private Integer endTimeCourse;
 
         @NotBlank(message = "status est obligatoire")
         private ReservationStatus status;

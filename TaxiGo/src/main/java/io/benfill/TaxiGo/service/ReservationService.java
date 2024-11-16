@@ -1,10 +1,17 @@
 package io.benfill.TaxiGo.service;
 
+import io.benfill.TaxiGo.dto.ReservationAnalytics;
+import io.benfill.TaxiGo.dto.ReservationRequest;
+import io.benfill.TaxiGo.dto.ReservationResponse;
 import io.benfill.TaxiGo.model.Reservation;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface ReservationService {
-    void createReservation(Reservation reservation);
-    Reservation getReservation(int id);
-    void updateReservation(Reservation reservation);
-    void deleteReservation(int id);
+    ReservationResponse createReservation(ReservationRequest reservation);
+    Page<ReservationResponse> getAllReservations(Pageable pageable);
+    ReservationResponse getReservation(Long id);
+    ReservationResponse updateReservation(Long id,ReservationRequest reservation);
+    void deleteReservation(Long id);
+    ReservationAnalytics getAnalytics();
 }
